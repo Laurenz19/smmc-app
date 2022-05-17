@@ -1,0 +1,174 @@
+<%- include ('../../common/_header.ejs') %>
+
+<div id="custom_panel" class="panel-header bubble-shadow">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 id="test" class="text-white pb-2 fw-bold">SMMC ~
+                    <%= _title %>
+                </h2>
+                <h5 class="text-white op-7 mb-2">
+                    <%= smmc %>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-inner">
+    <div class="page-header">
+        <div class="ml-md-auto py-2 py-md-0">
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    SMMC
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href=<%=url %> >
+                        <%= title %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <button class="btn btn-primary btn-sm Show_setup" data-toggle="modal" data-target="#modal_pdfSetup">
+                <span class="btn-label">
+                    <i class="fas fa-file-pdf"></i>
+                </span>
+                Exporter
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="log" class="display table table-striped table-hover" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th style="width: 10%; text-align: center;">Date</th>
+                            <th style="width: 15%; text-align: center;">Technicien</th>
+                            <th style="width: 8%; text-align: center;">ID Materiel</th>
+                            <th style="width:20%; text-align: center;">Materiel</th>
+                            <th style="text-align: center;">Utilisateur</th>
+                            <th style="width: 20%; text-align: center;">Diagnostique</th>
+                            <th style="text-align: center;">liste des pièces de rechange</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th style="width: 10%; text-align: center;">Date</th>
+                            <th style="width: 15%; text-align: center;">Technicien</th>
+                            <th style="width: 8%; text-align: center;">ID Materiel</th>
+                            <th style="width:20%; text-align: center;">Materiel</th>
+                            <th style="text-align: center;">Utilisateur</th>
+                            <th style="width: 20%; text-align: center;">Diagnostique</th>
+                            <th style="text-align: center;">liste des pièces de rechange</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                       <!-- all materiel here-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="modal_pdfSetup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+                <div class="row">
+                    <h5 class="modal-title col-md-12" id="exampleModalLabel"><strong>Paramétrage du PDF</strong></h5>
+                    <div class="form-check">
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="tout" id="tout" checked=false>
+                            <span class="form-radio-sign">Tout</span>
+                        </label>
+                        <label class="form-radio-label">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="1date" id="1date" checked=false>
+                            <span class="form-radio-sign">Année & mois</span>
+                        </label>
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="2dates" id="2dates" checked=false>
+                            <span class="form-radio-sign">Dates</span>
+                        </label>
+                    </div>
+                </div>
+			</div>
+			<div class="modal-body">
+                <div class="form-group">
+                    <div id="alert" class="alert" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label>Nom du fichier:</label>
+                    <input type="text" class="form-control" id="filename" placeholder="Nom du fichier">
+                </div>
+                <div class="form-group byAnnee">
+                    <label>Année & Mois:</label>
+                    <div class="form-group row" id="select">
+                        <select class="form-control form-control-lg col-md-6" id="_annee" data-placeholder="Choisir une année">
+                            <option value="2021">Dépannage 2021</option>
+                            <option value="2022">Dépannage 2022</option>
+                            <option value="2023">Dépannage 2023</option>
+                            <option value="2024">Dépannage 2024</option>
+                            <option value="2025">Dépannage 2025</option>
+                            <option value="2026">Dépannage 2026</option>
+                            <option value="2027">Dépannage 2027</option>
+                            <option value="2028">Dépannage 2028</option>
+                            <option value="2029">Dépannage 2029</option>
+                            <option value="2030">Dépannage 2030</option>
+                        </select>
+                        <select class="form-control form-control-lg col-md-6" id="_mois" data-placeholder="Filtre">
+                            <option value="Tout">12 Mois</option>
+                            <option value="1">Janvier</option>
+                            <option value="2">Fevrier</option>
+                            <option value="3">Mars</option>
+                            <option value="4">Avril</option>
+                            <option value="5">Mai</option>
+                            <option value="6">Juin</option>
+                            <option value="7">Juillet</option>
+                            <option value="8">Août</option>
+                            <option value="9">Septembre</option>
+                            <option value="10">Octobre</option>
+                            <option value="11">Novembre</option>
+                            <option value="12">Décembre</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row betweenDates">
+                    <label class="col-md-12">Dates</label>
+                    <div class="col-md-2"></div>
+                    <input type="date" class="form-control form-control-sm col-md-4" id="date1"> <div class="col-md-1"></div>
+                    <input type="date" class="form-control form-control-sm col-md-4" id="date2">
+                </div>
+               
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">
+                    Annuler
+                </button>
+                <button type="button" class="btn btn-light pdf">
+                    <span class="btn-label">
+                        <i class="fas fa-download"></i>
+                    </span>
+                </button>
+            </div>
+		</div>
+	</div>
+</div>
+    
+
+    <script src="/js/ajax/log.js"></script>
+    <%- include ('../../common/_footer.ejs') %>

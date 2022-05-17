@@ -1,0 +1,313 @@
+<%- include ('../../common/_header.ejs') %>
+
+    <div id="custom_panel" class="panel-header bubble-shadow">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">SMMC ~
+                        <%= title %>
+                    </h2>
+                    <h5 class="text-white op-7 mb-2">
+                        <%= smmc %>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="ml-md-auto py-2 py-md-0">
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        SMMC
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href=<%=url %> >
+                            <%= title %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Material action container -->
+        <div class="col-md-12">
+            <div class="card tab_materiel">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title"><strong><%= title %></strong></h4>
+                        <button class="btn btn-secondary btn-round ml-auto add-" data-toggle="modal" data-target="#materielModal">
+                            <i class="fa fa-plus"></i>
+                            Materiel
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Modal -->
+                    <div class="modal fade" id="materielModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">
+                                       <strong><%= title %></strong> 
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div id="alert" class="alert" role="alert"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="id_mat" hidden>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Marque du matériel</label>
+                                        <input type="text" class="form-control" id="marque_mat" placeholder="Marque">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment">Configuration</label>
+                                        <input type="text" class="form-control" id="config" placeholder="Configuration">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Etat du matériel</label>
+                                        <select class="form-control" id="etat">^
+                                            <option></option>
+                                            <option value="1">En marche</option>
+                                            <option value="0">En panne</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-check">
+                                        <label>Emplacement du materiel:</label><br/>
+                                        <label class="form-radio-label">
+                                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Directions" id="radio_dir" checked=false>
+                                            <span class="form-radio-sign">Direction</span>
+                                        </label>
+                                        <label class="form-radio-label ml-3">
+                                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Départements" id="radio_dep" checked=false>
+                                            <span class="form-radio-sign">Departement</span>
+                                        </label>
+                                        <label class="form-radio-label ml-3">
+                                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Services" id="radio_sce" checked=false>
+                                            <span class="form-radio-sign">Service</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group" id="select">
+                                        <!--<label id="select_label"></label>-->
+                                        <select class="form-control form-control-lg" id="_select" data-placeholder="Entrez un niveau d'affectation">
+                                            <!-- directions / departments / services -->
+                                        </select>
+                                    </div>
+                                  
+                                    <div class="form-group">
+										<label class="form-label d-block">Type du Materiel</label>
+										<div class="selectgroup selectgroup-info selectgroup-pills">
+											<label class="selectgroup-item">
+												<input type="radio" name="icon-input" value="Ordinateur" class="selectgroup-input" id="radio_pc">
+												<span class="selectgroup-button"><i class="la flaticon-laptop"></i></span>
+											</label>
+											<label class="selectgroup-item">
+												<input type="radio" name="icon-input" value="Imprimante" class="selectgroup-input" id="radio_printer">
+												<span class="selectgroup-button"><i class="icon-printer"></i></span>
+											</label>
+										</div>
+									</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" id="reset" data-dismiss="modal"><i class="icon-action-undo"></i></button>
+                                    <button type="button" class="btn btn-info add_materiel">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="table-responsive">
+                            <table id="add-row" class="display table table-striped table-hover" >
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%">N°</th>
+                                        <th>Type</th>
+                                        <th>Marque</th>
+                                        <th>Attribué</th>
+                                        <th>Etat</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th style="width: 10%">N°</th>
+                                        <th>Type</th>
+                                        <th>Marque</th>
+                                        <th>Attribué</th>
+                                        <th>Etat</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                   <!-- all materiel here-->
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+            <!-- Show info -->
+            <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="btn btn-primary btn-sm Show_setup" data-toggle="modal" data-target="#modal_pdfSetup">
+                                <span class="btn-label">
+                                    <i class="fas fa-file-pdf"></i>
+                                </span>
+                                Exporter
+                            </button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body border">
+                            <h5 class="modal-title" id="info_title"></h5>
+                            <input id="id" type="text" hidden>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Marque</th>
+                                        <th scope="col">Config</th>
+                                        <th scope="col">Utilisateur</th>
+                                    </tr>
+                                </thead>
+                                <tbody id='info_body'>
+                                   <!--Info here-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card setting">
+                <!-- Setting-->
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title"><strong>Attribution d'un matériel</strong></h4>
+                       
+                        <button id="back_btn" class="btn btn-secondary btn-border btn-round ml-auto">
+                            <i class=" flaticon-left-arrow-3"></i>
+                            Retour
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                       <div class="col-md-5 border">
+                            <div class="form-group">
+                                <div id="_alert" class="alert" role="alert"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="_id_mat" hidden>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Marque du matériel</label>
+                                    <input type="text" class="form-control" id="_marque_mat" placeholder="Marque" readonly>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="comment">Type</label>
+                                    <input type="text" class="form-control" id="_type" placeholder="Type" readonly>
+                                </div>
+                                <div class="form-group  col-md-12">
+                                    <label for="comment">Configuration</label>
+                                    <input type="text" class="form-control" id="_config" placeholder="Configuration" readonly>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Utilisateur</label>
+                                    <input type="text" class="form-control" id="_id_user" hidden>
+                                    <input type="text" class="form-control" id="_user" placeholder="Utilisateur" readonly>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Date d'utilisation</label>
+                                    <div class="row form-group">
+                                        <input type="date" class="form-control col-md-6" value = "" id="debut">
+                                        <input type="date" class="form-control col-md-6" value = "" id="fin">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" id="_reset" data-dismiss="modal"><i class="icon-action-undo"></i></button>
+                                <button type="button" class="btn btn-info mat_user" data-dismiss="modal">Ajouter</button>
+                            </div>
+                       </div> 
+                        <div class="col-md-7 border">
+                            <div class="table-responsive">
+                                <table id="user_tab" class="display table table-striped table-hover" >
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%">N°</th>
+                                            <th>Nom et Prénoms</th>
+                                            <th>Fonction</th>
+                                            <th style="width: 10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th style="width: 10%">N°</th>
+                                            <th>Nom et Prénoms</th>
+                                            <th>Fonction</th>
+                                            <th style="width: 10%">Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                       <!-- all materiel here-->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+<div class="modal fade" id="modal_pdfSetup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+                <div class="row">
+                    <h5 class="modal-title col-md-12" id="exampleModalLabel"><strong>Paramétrage du PDF</strong></h5>
+                </div>
+			</div>
+			<div class="modal-body">
+                <div class="form-group">
+                    <div id="alert2" class="alert" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label>Nom du fichier:</label>
+                    <input type="text" class="form-control" id="filename" placeholder="Nom du fichier">
+                </div>
+                               
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">
+                    Annuler
+                </button>
+                <button type="button" class="btn btn-light pdf">
+                    <span class="btn-label">
+                        <i class="fas fa-download"></i>
+                    </span>
+                </button>
+            </div>
+		</div>
+	</div>
+</div>
+    
+        <script src="/js/ajax/materiel.js"></script>
+    <%- include ('../../common/_footer.ejs') %>

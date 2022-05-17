@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> SMMC ~
+        <%= title %>
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="/images/SMMC_logo.png" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="/template/examples/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Lato:300,400,700,900"]
+            },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
+                urls: ['/template/examples/assets/css/fonts.min.css']
+            },
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <!-- JQUERY -->
+    <!--<script src="/jquery/jquery.min.js"></script>-->
+    <script type="text/javascript" src="/js/plugins/jquery/docs/js/jquery-2.1.3.min.js"></script>
+    <!-- Socket.io -->
+    <script src="/socket/socket.io.js"></script>
+    <!-- sweetalert-->
+    <script src="/sweetalert/sweetalert2.all.min.js"></script>
+    <!--Splidejs-->
+    <script src="/splidejs/splide/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="/splidejs/splide/dist/css/splide.min.css">
+    <link rel="stylesheet" href="/splidejs/splide/dist/css/themes/splide-sea-green.min.css">
+
+    <link rel="stylesheet" href="/sweetalert/sweetalert2.min.css">
+    <!-- Animate.css -->
+    <link href="/template/documentation/assets/prism.css" rel="stylesheet" />
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/template/examples/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/template/examples/assets/css/atlantis.min.css">
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="/template/examples/assets/css/demo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Chosen select -->
+    <link rel="stylesheet" href="/js/plugins/choosen/chosen.css">
+    <!--Dropzone js-->
+    <link rel="stylesheet" href="/js/plugins/dropzone-5.7.0/dist/dropzone.css">
+    
+</head>
+
+<body onload="active_load()">
+    <div class="wrapper">
+        <div class="main-header">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="white">
+
+                <div class="logo">
+                    <img src="/images/logo.png" alt="navbar brand" class="navbar-brand">
+                </div>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+            </div>
+            <!-- End Logo Header -->
+
+            <!-- Navbar Header -->
+            <nav id="custom_nav_header" class="navbar navbar-header navbar-expand-lg" data-background-color="white">
+
+                <div class="container-fluid">
+                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                        <li class="nav-item toggle-nav-search hidden-caret">
+                            <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <div class="avatar-sm">
+                                    <% if (user.photo ==='') { %>
+                                        <img src="/template/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                                     <% } else { %>
+                                        <img src="/images/upload/<%= user.photo %>" alt="..." class="avatar-img rounded-circle">
+                                    <% } %>
+                                </div>
+                            </a>
+                            <ul id="box_app" class="dropdown-menu dropdown-user animated fadeIn">
+                                <div class="dropdown-user-scroll scrollbar-outer">
+                                    <li>
+                                        <div class="user-box">
+                                            <div class="avatar-lg">
+                                                <% if (user.photo ==='') { %>
+                                                    <img src="/template/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded">
+                                                 <% } else { %>
+                                                    <img src="/images/upload/<%= user.photo %>" alt="image profile" class="avatar-img rounded">
+                                                <% } %>
+                                               
+                                            </div>
+                                            <div class="u-text name">
+                                                <h4><%= user.name %></h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-muted mail"> <%= user.email %> </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item profile">
+                                           <i class="fas fa-user"></i> Mon Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item account_setting">
+                                        <i class="fas fa-user-cog"></i>  Paramètres
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item logout" href="/logout">
+                                        <i class="fas fa-sign-out-alt"></i> Déconnecter
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+            <div class="content">
+                <div id="sender" hidden><%=user.name%>/<%=user.id%></div>

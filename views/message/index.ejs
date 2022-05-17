@@ -1,0 +1,191 @@
+<%- include ('../common/_header.ejs') %>
+
+    <div id="custom_panel" class="panel-header bubble-shadow">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">SMMC ~
+                        <%= title %>
+                    </h2>
+                    <h5 class="text-white op-7 mb-2">
+                        <%= smmc %>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="ml-md-auto py-2 py-md-0">
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        SMMC
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href=<%=url %> >
+                            <%= title %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 row">
+                <div class="card col-md-4">
+                    <div class="card-header">
+                            <% if (user.role === 'Technicien') { %>
+                                <div class="card-title box"><strong>Tous les utilisateurs</strong></div>
+                                <% } else { %>
+                                    <div class="card-title box"><strong>Parc informatique de la SMMC</strong></div>
+                            <% } %>
+                    </div>
+                    <div class="card-body">
+                            <div class="row searchBox">
+                                <div class="col-sm-12 searchBox-inner">
+                                <div class="form-group has-feedback">
+                                    <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Rechercher">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="separator-dashed"></div>
+    
+                            <div class="card-list tech_list"> 
+                                <!--All User-->
+                            </div>
+                    </div> 
+                </div>
+                <div class="col-md-8">
+                    <div class="card full-height">
+                        <div class="card-header">
+                            <div class="card-head-row">
+                                <div class="card-title" style="font-size: 1.5em;">
+                                  <strong>Discussion</strong>
+                                </div>
+                                <div class="ml-md-auto py-2 py-md-0 title_left" style="font-size: 1.3em; font: bold;"></div>
+                            </div>
+                        </div>
+                        <div class="card-body all_message bg-light">
+                          
+                            
+                        </div>
+                        <div class="card-footer box_footer">        
+                                <div class="form-group" id="d2">
+                                   
+                                    <textarea class="form-control" id="content_msg" cols="30" rows="2"></textarea>
+                                    <div class="form-control">
+                                        <button class="col-md-1 btn-border btn btn-default cancel_msg">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <button class="col-md-1 btn-border btn btn-default send_msg">
+                                                <i class="far fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>   
+                    </div>
+               </div>
+            </div>
+            </div>
+            <div class="col-md-1"></div>
+            
+        <div class="modal fade bd-example-modal-lg mda-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div id="backup-mda" hidden></div>
+                    <div class="modal-header">
+                        <div class="form-group dd_1">
+                            <div class="input-icon">
+                                <input type="text" name="typelist" class="form-control" list="dd_menu" placeholder="Rechercher...">
+                                <datalist id="dd_menu">
+                                   <!-- All direction departement & service-->
+                                </datalist>
+                                <span class="input-icon-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table_mat">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Marque</th>
+                                    <th scope="col">Utilisateur</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mda-body">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg mp-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                   
+                    <div id="backup-mp" hidden></div>
+                    <div class="modal-header">
+                        <h5 id="mp-modal-title" class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Marque</th>
+                                    <th scope="col">Configuration</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mp-body">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="/js/custom/chat.js"></script>
+    <script>
+
+        // instance, using default configuration.
+        CKEDITOR.replace( 'content_msg', {
+            height: 100
+        });
+    </script>
+    <%- include ('../common/_footer.ejs') %>

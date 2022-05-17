@@ -1,0 +1,135 @@
+<%- include ('../../common/_header.ejs') %>
+
+    <div id="custom_panel" class="panel-header bubble-shadow">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">SMMC ~
+                        <%= title %>
+                    </h2>
+                    <h5 class="text-white op-7 mb-2">
+                        <%= smmc %>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="ml-md-auto py-2 py-md-0">
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        SMMC
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href=<%=url %> >
+                            <%= title %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Material action container -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title"><strong><%= title %></strong></h4>
+                        <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#pdrModal">
+                            <i class="fa fa-plus"></i>
+                            <%= title %> 
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Modal -->
+                    <div class="modal fade" id="pdrModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">
+                                       <strong><%= title %></strong>
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div id="alert" class="alert" role="alert"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="id_pdr" hidden>
+                                    </div>
+                                    <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label>Marque:</label>
+                                                <input type="text" class="form-control" id="marque" placeholder="Marque">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Description:</label>
+                                                <input type="text" class="form-control" id="description" placeholder="Description">
+                                            </div>
+                                    
+                                            <div class="form-group col-md-6">
+                                                <label>Nombre:</label>
+                                                <input type="number" class="form-control" min="0" id="nombre">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Date d'arrivée:</label>
+                                                <input type="date" class="form-control" id="dateArrivee">
+                                            </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light reset" data-dismiss="modal"><i class="icon-action-undo"></i></button>
+                                    <button type="button" class="btn btn-info add_pdr">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="table-responsive">
+                            <table id="add-row" class="display table table-striped table-hover" >
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Marque</th>
+                                        <th>Description</th>
+                                        <th>Nombre</th>
+                                        <th>Date d'arrivée</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Marque</th>
+                                        <th>Description</th>
+                                        <th>Nombre</th>
+                                        <th>Date d'arrivée</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                   <!-- all materiel here-->
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+    <script src="/js/ajax/pdr.js"></script>
+    <%- include ('../../common/_footer.ejs') %>

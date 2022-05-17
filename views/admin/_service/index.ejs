@@ -1,0 +1,103 @@
+<%- include ('../../common/_header.ejs') %>
+    <div id="custom_panel" class="panel-header bubble-shadow">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">SMMC ~
+                        <%= title %>
+                    </h2>
+                    <h5 class="text-white op-7 mb-2">
+                        <%= smmc %>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="ml-md-auto py-2 py-md-0">
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        SMMC
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href=<%=url %> >
+                            <%= title %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="alert_sce" class="alert" role="alert"></div>
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">Formulaire</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Nom de la Service</label>
+                            <input type="text" class="form-control" id="new_service" placeholder="Service">
+                            <input type="text" class="form-control" id="id_sce" hidden>
+                        </div>
+                        <div class="form-group">
+                            <!--<label for="exampleFormControlSelect1">Département</label>-->
+                            <select class="form-control form-control-lg" id="departement" data-placeholder="Choisir un département">
+                               <!-- all department here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button id="add_sce" class="btn btn-info">Ajouter</button>
+                            <button id="reset" class="btn btn-light">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="add-row" class="display table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>N° Service</th>
+                                        <th>Nom de la service</th>
+                                        <th>Département</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>N° Service</th>
+                                        <th>Nom de la service</th>
+                                        <th>Département</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <!-- all service here -->
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/ajax/service.js"></script>
+
+    <%- include ('../../common/_footer.ejs') %>

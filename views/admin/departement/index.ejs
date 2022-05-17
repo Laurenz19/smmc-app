@@ -1,0 +1,104 @@
+<%- include ('../../common/_header.ejs') %>
+    <div id="custom_panel" class="panel-header bubble-shadow">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">SMMC ~
+                        <%= title %>
+                    </h2>
+                    <h5 class="text-white op-7 mb-2">
+                        <%= smmc %>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="ml-md-auto py-2 py-md-0">
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        SMMC
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href=<%=url %> >
+                            <%= title %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="alert_dep" class="alert" role="alert"></div>
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">Formulaire</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Nom du département</label>
+                            <input type="text" class="form-control" id="new_departement" placeholder="Département">
+                            <input type="text" class="form-control" id="id_dep" hidden>
+                        </div>
+                        <div class="form-group">
+                            <!--<label for="exampleFormControlSelect1">Direction</label>-->
+                            <select class="form-control" id="direction" data-placeholder="Choisir une direction">
+                                <!-- all direction here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button id="add_dep" class="btn btn-info btm_sm">Ajouter</button>
+                            <button id="reset" class="btn btn-light btm_sm">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="add-row" class="display table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>N° Département</th>
+                                        <th>Nom de la département</th>
+                                        <th>Direction</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>N° Département</th>
+                                        <th>Nom de la département</th>
+                                        <th>Direction</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <!-- all departement here -->
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/ajax/departement.js"></script>
+    <%- include ('../../common/_footer.ejs') %>

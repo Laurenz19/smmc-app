@@ -1,0 +1,228 @@
+<%- include ('../../common/_header.ejs') %>
+
+<div id="custom_panel" class="panel-header bubble-shadow">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">SMMC ~
+                    <%= title %>
+                </h2>
+                <h5 class="text-white op-7 mb-2">
+                    <%= smmc %>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-inner">
+    <div class="page-header">
+        <div class="ml-md-auto py-2 py-md-0">
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    SMMC
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href=<%=url %> >
+                        <%= title %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card add_depannage">
+        <!-- Setting-->
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <div class="card-title">
+                    <div class="form-check">
+                        <label class="form-radio-label">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Directions" id="radio_dir" checked=false>
+                            <span class="form-radio-sign">Direction</span>
+                        </label>
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Départements" id="radio_dep" checked=false>
+                            <span class="form-radio-sign">Departement</span>
+                        </label>
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Services" id="radio_sce" checked=false>
+                            <span class="form-radio-sign">Service</span>
+                        </label>
+                    </div>
+                    <div class="form-group dd_1">
+                        <div class="input-icon">
+                            <input type="text" name="typelist" class="form-control" list="dd_menu" placeholder="Rechercher...">
+                            <datalist id="dd_menu">
+                               <!-- All direction departement & service-->
+                            </datalist>
+                            <span class="input-icon-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-auto">
+                    <button id="back_btn" class="btn btn-secondary btn-border btn-round ml-auto">
+                        <i class="flaticon-left-arrow-3"></i>
+                        Retour
+                    </button>
+                    <div class="titre animated slideInLeft">
+                        <h2>Depannage</h2>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+               <div class="col-md-5 border">
+                    <div class="form-group">
+                        <div id="_alert" class="alert" role="alert"></div>
+                    </div>
+                    <input type="text" id="backup" hidden>
+                    <div class="row">
+                        <div class="form-group col-md-6" id="tech_select">
+                            <label id="select_label">Téchnicien</label>
+                            <select class="form-control" id="tech_id">
+                                <!-- all technicien -->
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="comment">Matériel</label>
+                            <input type="text" class="form-control" id="id_mat" placeholder="Materiel" readonly>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Diagnostique</label>
+                            <textarea name="text" class="form-control" id="diagnostique" cols="30" rows="2"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Date de dépannage</label>
+                            <input type="date" class="form-control col-md-6" value = "" id="date_dep">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="comment">Pièces de rechange</label>
+                            <select class="form-control form-control-lg" id="id_pdr" multiple>
+                               <!-- All pdr -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" id="_reset" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-info add_dep" data-dismiss="modal">Ajouter</button>
+                    </div>
+               </div> 
+                <div class="col-md-7 border">
+                    <div class="table-responsive">
+                        <table id="mat_tab" class="display table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%">N°</th>
+                                    <th>Type</th>
+                                    <th>Configuration</th>
+                                    <th>Utilisateur</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th style="width: 10%">N°</th>
+                                    <th>Type</th>
+                                    <th>Configuration</th>
+                                    <th>Utilisateur</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                               <!-- all materiel here-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="card tab_dep">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <div class="card-title">
+                    <div class="form-check">
+                        <label class="form-radio-label">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Directions" id="radio_dir1" checked=false>
+                            <span class="form-radio-sign">Direction</span>
+                        </label>
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Départements" id="radio_dep1" checked=false>
+                            <span class="form-radio-sign">Departement</span>
+                        </label>
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="Services" id="radio_sce1" checked=false>
+                            <span class="form-radio-sign">Service</span>
+                        </label>
+                    </div>
+                    <div class="form-group dd_2">
+                        <div class="input-icon">
+                            <input type="text" name="typelist2" class="form-control" list="dd_menu1" placeholder="Rechercher...">
+                            <datalist id="dd_menu1">
+                               <!-- All direction departement & service-->
+                            </datalist>
+                            <span class="input-icon-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-auto">
+                    <button id="add_btn" class="btn btn-secondary btn-border btn-round ml-auto">
+                        <i class="fa fa-plus"></i>
+                        Depannage
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="depannage_tab" class="display table table-striped table-hover" >
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;"></th>
+                            <th style="width: 10%">Date</th>
+                            <th style="width: 10%">technicien</th>
+                            <th style="width: 8%;">ID Matériel</th>
+                            <th style="width: 20%;">Matériel</th>
+                            <th>Diagnostique</th>
+                            <th style="width: 18%;">liste des pièces de rechange</th>
+                            <th style="width: 10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th style="width: 5%;"></th>
+                            <th style="width: 10%">Date du dépannage</th>
+                            <th style="width: 10%">technicien</th>
+                            <th style="width: 8%;">ID Matériel</th>
+                            <th style="width: 20%;">Matériel</th>
+                            <th>Diagnostique</th>
+                            <th style="width: 18%;">liste des pièces de rechange</th>
+                            <th style="width: 10%">Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                       <!-- all materiel here-->
+                    </tbody>
+                </table>
+            </div>
+         </div>
+    </div>
+    <script src="/js/ajax/depannage.js"></script>
+    <%- include ('../../common/_footer.ejs') %>

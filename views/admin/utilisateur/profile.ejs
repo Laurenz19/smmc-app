@@ -1,0 +1,132 @@
+<%- include ('../../common/_header.ejs') %>
+<div id="custom_panel2" class="panel-header bubble-shadow">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">SMMC ~
+                    <%= title %>
+                </h2>
+                <h5 class="text-white op-7 mb-2">
+                    <%= smmc %>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-inner mt--5">
+    <div class="row mt--2">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <div class="card full-height">
+                <div class="card-header" style="background-image: url('/template/examples/assets/img/blogpost.jpg')">
+                    <div class="profile-picture">
+                        <div class="avatar avatar-xl">
+                            <% if (user.photo ==='') { %>
+                                <img src="/template/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded-circle">
+                             <% } else { %>
+                                <img src="/images/upload/<%= user.photo %>" alt="image profile" class="avatar-img rounded-circle">
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="user-profile">
+                        <p class="profile-name">
+                            <%= user.name %>
+                        </p>
+                        <p class="text-muted">
+                            <ol id="info-profile">
+                                <li><i class="fas fa-envelope"></i> <%= user.email %></li>
+                                <li><i class="fas fa-home"> </i><%= user.local %></li>
+                            </ol>
+                        </p>
+                    </div>        
+               </div>
+               <div class="card-footer">
+                <div class="row user-stats text-center">
+                    <div class="col">
+                        <div class="title">
+                            Mettre à jour la photo
+                        </div>
+                        <button class="btn btn-light change-pdp">photo</button>
+                        <!--<button id="init" class="btn btn-primary mr-1 mb-1">Effacer</button>
+                        <form action="/file-upload" class="dropzone" method="POST" enctype="multipart/form-data">
+                            <input type="text" name="" id="" hidden>
+                            <div class="fallback">
+                              <input id="file" name="file" type="file"/>
+                            </div>
+                        </form>-->
+                    </div>
+                    <div class="col">
+                        <div class="title">
+                            Changer de mot de passe
+                        </div>
+                        <button class="btn btn-link change-pwd">Cliquez ici!</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-header">
+                    <h5 class="profile-titre">Matériels</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Marque</th>
+                                <th scope="col">Configuration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tab-profile">
+                            <tr>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+       <div class="col-md-10 box-setting-profile">
+        <div class="card full-height">
+            <div class="card-body">
+                <div class="col-md-9">
+                    <div id="alert" class="alert" role="alert"></div>
+                </div>
+                <div class="bd-example border mdp-div-upd">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Entrez un nouveau mot de passe</label>
+                            <input type="password" class="form-control" id="mdp1" placeholder="Mot de Passe">
+                            <small id="emailHelp" class="form-text text-muted">Veuillez ne pas oublier votre mot de passe.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Confirmez votre mot de passe</label>
+                            <input type="password" class="form-control" id="mdp2" placeholder="Mot de Passe">
+                        </div>
+                        <div class="form-group">
+                            <button id="mdp-upd" class="btn btn-secondary">Valider</button>
+                            <button id="mdp-cancel" class="btn btn-light">Annuler</button>
+                        </div>
+                </div>
+                <div class="bd-example pdp-div-upd">
+                    <form action="/file-upload/<%= user.id %>" method="POST" enctype="multipart/form-data">
+                        <input type="text" name="" id="" hidden>
+                      
+                        <input id="file" class="file" name="file" type="file" data-preview-file-type="text"/>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+       </div>
+    </div>
+</div>
+<script src="/js/ajax/profile.js"></script>
+    <%- include ('../../common/_footer.ejs') %>
